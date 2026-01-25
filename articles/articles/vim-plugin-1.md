@@ -1,7 +1,7 @@
 ---
 title: "プログラミング初心者がdenopsでneovimプラグインを作成してみた話"
 emoji: "✨"
-type: "tech" # tech: 技術記事 / idea: アイデア
+type: "tech"
 topics: ["denops", "neovim", "plugin"]
 published: true
 ---
