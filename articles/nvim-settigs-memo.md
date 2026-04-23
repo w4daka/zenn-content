@@ -29,7 +29,11 @@ end, { desc = "Open init.lua" })
 
 ### 必要な前提知識
 
-nvim_create_user_commandの以下の部分
+- ユーザーコマンドは`nvim_create_user_command`で作ることができ、この関数は以下の3つの省略できない引数をとります
+  - コマンドの名前の文字列(組み込みのコマンドと区別するため、大文字ではじめる必要があります。
+  - コマンドを呼び出したときに実行するVimのコマンドの文字列ないしLuaの関数
+  - command-attributesのテーブル
+
 > ユーザコマンドを作る                                 *lua-guide-commands-create*
 
 ユーザコマンドは |nvim_create_user_command()| で作れる。この関数は
