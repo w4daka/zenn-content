@@ -27,29 +27,26 @@ end, { desc = "Open init.lua" })
 
 このコマンドは`nvim_create_user_command`の3引数版です
 
-### 必要な前提知識
+### 詳細
 
 - ユーザーコマンドは`nvim_create_user_command`で作ることができ、この関数は以下の3つの省略できない引数をとります
-  - コマンドの名前の文字列(組み込みのコマンドと区別するため、大文字ではじめる必要があります。
-  - コマンドを呼び出したときに実行するVimのコマンドの文字列ないしLuaの関数
-  - command-attributesのテーブル
+  - コマンドの名前の文字列(組み込みのコマンドと区別するため、大文字ではじめる必要があります。上記のスクリプトの`"InitLua"`の部分ですね。
+  - コマンドを呼び出したときに実行するVimのコマンドの文字列ないしLuaの関数。これは上記スクリプトの
 
-> ユーザコマンドを作る                                 *lua-guide-commands-create*
+```lua
+function()
+  vim.cmd.edit("~/.config/nvim/init.lua")
+end
+```
 
-ユーザコマンドは |nvim_create_user_command()| で作れる。この関数は
-3つの省略できない引数を取る:
-• コマンドの名前の文字列 (組み込みのコマンドと区別するため、
-  大文字で始める必要がある)
-• コマンドを呼び出したときに実行するVimのコマンドの文字列ないしLuaの関数
-• |command-attributes| のテーブル
-  さらに以下も指定できる
+の部分
+
+- command-attributesのテーブル。これはデフォルトではなしで今回もなしです。
+  さらに以下も指定でき、今回は
   • `desc`: コマンドを説明する文字列
   • `force`: コマンドを上書きしないためには `false` にする。
   • `preview`: |:command-preview| に使われるLuaの関数
-
-1. コマンドの名前の文字列(組み込みのコマンドと区別するために、大文字で始める必要があります。)上記のスクリプトの`"InitLua"`の部分ですね。
-
-2. コマンドを実行したときに実行するVimのコマンドの文字列もしくはluaの関数
+`desc`をしていしています
 
 ## 参考
 
@@ -68,3 +65,7 @@ helpの`lua-guide-commands-create`。コマンドラインモードで
 ```
 
 とするとでてきます。webで見れるバージョンは[こちら](https://neovim.io/doc/user/lua-guide/#_creating-user-commands)
+
+## 最後に
+
+今回の調査で`nvim_create_user_command`について書きたいことができたので別途記事にします。
