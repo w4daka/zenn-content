@@ -3,7 +3,7 @@ title: "neovimのluaスクリプトの設定memo"
 emoji: "👌"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["neovim"]
-published: false
+published: true
 ---
 
 ## context
