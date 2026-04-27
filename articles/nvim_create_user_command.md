@@ -28,7 +28,13 @@ vim.api.nvim_create_user_command('SayHello', 'echo "Hello!"', {})
 vim.api.nvim_create_user_command({name}, {command}, {opts})
 ```
 
-という形が必要。{name},{command},{opts}はそれぞれ必須で{name}にはcommandの名前の文字列、{command}にはneovimにVimのcommandとして直接実行させるための文字列か、luaの関数を書く。{opt}には
+という形が必要。
+
+- `{name}`,`{command}`,`{opts}`はそれぞれ必須
+- `{name}`にはcommandの名前の文字列
+- `{command}`にはneovimにVimのcommandとして直接実行させるための文字列か、luaの関数を書く。
+
+- `{opt}`には
 
 | キー | 型 | 内容 |
 |------|-----|------|
