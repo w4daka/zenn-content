@@ -10,17 +10,7 @@ published: false
 
 - neovimで便利コマンドを作れる機能のこと(まちがってたらごめんなさい)
 
-## 実例集とその解説
-
-### 1. `:SayHello`→`Hello!`とだけ表示するコマンド(単純な文字列実行)
-
-#### コマンド
-
-```lua
-vim.api.nvim_create_user_command('SayHello', 'echo "Hello!"', {})
-```
-
-#### 解説
+## 前提の解説
 
 - そもそもuser_commandを作るには、
 
@@ -31,7 +21,7 @@ vim.api.nvim_create_user_command({name}, {command}, {opts})
 という形が必要。
 
 - `{name}`,`{command}`,`{opts}`はそれぞれ必須
-- `{name}`にはcommandの名前の文字列
+- `{name}`にはcommandの名前の文字列。必ず大文字から始めなくてはならない。
 - `{command}`にはneovimにVimのcommandとして直接実行させるための文字列か、luaの関数を書く。
 
 - `{opt}`には
@@ -45,3 +35,37 @@ vim.api.nvim_create_user_command({name}, {command}, {opts})
 | `bang`等 | boolean | `:command-bang`などのboolean属性をtrueに設定 |
 
 を渡せる
+
+## 実例集とその解説
+
+### 1. `:SayHello`→`Hello!`とだけ表示するコマンド(単純な文字列実行)
+
+#### コマンド
+
+```lua
+vim.api.nvim_create_user_command('SayHello', 'echo "Hello!"', {})
+```
+
+#### 解説
+
+| 部分 | 説明 |
+|------|------|
+| `'SayHello'` | `{name}`: 大文字始まり名前 |
+| `'echo "Hello!"'` | `{command}`: Vimのコマンドとして直接実行させるための文字列でこれは`vim.cmd('echo "Hello!"')`と |
+| `{}` |`{opt}`:  属性なし。なにも制約しない。|
+
+### 2. 引数を受けとるコマンド
+
+#### コマンド
+
+```lua
+vim.api.nvim_create_user_command('Greet', function(args)
+  print("Hello, " .. args.args)
+end, { nargs = 1 })
+```
+
+| 部分 | 説明 |
+|------|------|
+| `function(args)` ~ `end`| argsという名前の引数を1つと受け取る無名関数。|
+| `'echo "Hello!"'` | `{command}`: Vimのコマンドとして直接実行させるための文字列でこれは`vim.cmd('echo "Hello!"')`と |
+| `{}` |`{opt}`:  属性なし。なにも制約しない。|
